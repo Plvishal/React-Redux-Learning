@@ -1,8 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { toggleTodo } from '../Redux/Actions/todoAction';
 
-function TodoList({ onToggle }) {
+function TodoList() {
   const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+  //   const todos=store.getState().store
   return (
     <div>
       <ul>
@@ -10,11 +14,11 @@ function TodoList({ onToggle }) {
           <li key={todo.id}>
             <span>{todo.text}</span>
             <span className={todo.completed ? 'completed' : 'Pending'}>
-              {todo.completed ? 'Completed' : 'Pending'}
+              {todo.completed ? 'completed' : 'Pending'}
             </span>
             <button
               onClick={() => {
-                onToggle(index);
+                dispatch(toggleTodo(index));
               }}
             >
               Toggle
