@@ -1,10 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-function TodoList({ todos, onToggle }) {
+function TodoList({ onToggle }) {
+  const todos = useSelector((state) => state.todos);
   return (
     <div>
       <ul>
-        {todos.map((todo, index) =>(
+        {todos.map((todo, index) => (
           <li key={todo.id}>
             <span>{todo.text}</span>
             <span className={todo.completed ? 'completed' : 'Pending'}>
